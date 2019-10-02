@@ -25,6 +25,10 @@ public class Compte {
     @JsonIgnoreProperties("compte")
     private List<User> users;
 
+    @OneToMany(mappedBy = "compte",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("compte")
+    private List<Depot> depots;
+
     public int getId() {
         return id;
     }

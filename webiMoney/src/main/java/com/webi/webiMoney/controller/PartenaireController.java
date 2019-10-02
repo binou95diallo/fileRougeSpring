@@ -45,9 +45,9 @@ public class PartenaireController {
         User user = new User();
         Compte compte= new Compte();
         compte.setPartenaire(partenaire);
-        SimpleDateFormat formater = new SimpleDateFormat("yyyyMMddhhss");//210902 251763
+        SimpleDateFormat formater = new SimpleDateFormat("yyyyMMddhh");
         Date now=new Date();
-        double rand=Math.random() * ( 1000 - 99 );
+        double rand=Math.random() * ( 100 - 10 );
         String numcompte=formater.format(now);
         compte.setNumeroCompte(numcompte+""+rand);
         compteRepository.save(compte);
@@ -79,7 +79,7 @@ public class PartenaireController {
             p.setId(id);
         }
         else{
-            System.out.println("utilisateur inconnu");
+            System.out.println("Partenaire inconnu");
         }
 
         partenaireRepository.save(p);

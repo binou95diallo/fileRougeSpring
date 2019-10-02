@@ -1,5 +1,7 @@
 package com.webi.webiMoney.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -8,8 +10,10 @@ import java.util.List;
 @Entity
 public class Partenaire {
     @OneToMany(mappedBy = "partenaire")
+    @JsonIgnore
     private List<Compte> comptes;
     @OneToMany(mappedBy = "partenaire")
+    @JsonIgnore
     private List<User> users;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

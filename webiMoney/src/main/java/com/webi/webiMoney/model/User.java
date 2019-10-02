@@ -55,7 +55,8 @@ public class User implements Serializable {
     private String email;
     @JoinColumn(name = "partenaire_id",referencedColumnName ="id")
     @ManyToOne(fetch = FetchType.LAZY,optional = true)
-    @JsonIgnoreProperties("users")
+    @JsonIgnore
+    //@JsonIgnoreProperties("users")
     private Partenaire partenaire;
     @NotBlank
     @Size(min=6, max = 100)
@@ -69,8 +70,13 @@ public class User implements Serializable {
 
     @JoinColumn(name = "compte_id",referencedColumnName ="id")
     @ManyToOne(fetch = FetchType.LAZY,optional = true)
-    @JsonIgnoreProperties("users")
+   // @JsonIgnoreProperties("users")
+    @JsonIgnore
     private Compte compte;
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("user")
+    private List<Depot> depots;
 
     public User() {}
 
