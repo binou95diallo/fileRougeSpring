@@ -11,27 +11,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/compte")
 public class CompteController {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @Autowired
+    CompteRepository compteRepository;
+    @GetMapping(value = "/liste")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public List<Compte> liste(){
+        return compteRepository.findAll();
+    }
+
     @Autowired
     DepotRepository depotRepository;
     @Autowired
     UserRepository userRepository;
     Compte compte;
-    @Autowired
-    CompteRepository compteRepository;
     @PostMapping(value = "/depot/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> addDepot(@PathVariable int id,@RequestBody(required = false) Depot d, HttpServletRequest request){

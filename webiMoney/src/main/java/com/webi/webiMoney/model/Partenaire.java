@@ -18,6 +18,7 @@ public class Partenaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String userName;
     @NotBlank
     @Size(min=3, max = 50)
     private String nomComplet;
@@ -42,11 +43,11 @@ public class Partenaire {
 
     public  Partenaire(){}
 
-    public  Partenaire (Integer id, String nomComplet,String status, String telephone,String adresse, String email,
+    public  Partenaire (Integer id, String userName, String status, String telephone, String adresse, String email,
                         String ninea, String raisonSocial){
         this.id=id;
         this.ninea=ninea;
-        this.nomComplet=nomComplet;
+        this.userName = userName;
         this.adresse=adresse;
         this.telephone=telephone;
         this.raisonSocial=raisonSocial;
@@ -70,12 +71,12 @@ public class Partenaire {
         this.id = id;
     }
 
-    public String getNomComplet() {
-        return nomComplet;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNomComplet(String nomComplet) {
-        this.nomComplet = nomComplet;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getAdresse() {
@@ -124,5 +125,13 @@ public class Partenaire {
 
     public void setRaisonSocial(String raisonSocial) {
         this.raisonSocial = raisonSocial;
+    }
+
+    public String getNomComplet() {
+        return nomComplet;
+    }
+
+    public void setNomComplet(String nomComplet) {
+        this.nomComplet = nomComplet;
     }
 }

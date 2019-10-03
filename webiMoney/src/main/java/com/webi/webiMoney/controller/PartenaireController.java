@@ -52,7 +52,7 @@ public class PartenaireController {
         compte.setNumeroCompte(numcompte+""+rand);
         compteRepository.save(compte);
         user.setNomComplet(partenaire.getNomComplet());
-        user.setUsername(partenaire.getNomComplet());
+        user.setUsername(partenaire.getUserName());
         user.setAdresse(partenaire.getAdresse());
         user.setPassword((encoder.encode("passer")));
         user.setEmail(partenaire.getEmail());
@@ -70,7 +70,22 @@ public class PartenaireController {
         return part;
     }
     //Modifier partenaire
-    @PutMapping(value = "/update/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
+   /* @PutMapping(value = "/update/{id}",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public void update(@PathVariable int id, @RequestBody() Partenaire p){
+        Optional<Partenaire> partenaire;
+        partenaire=partenaireRepository.findById(id);
+        if(partenaire!=null){
+            p.setId(id);
+        }
+        else{
+            System.out.println("Partenaire inconnu");
+        }
+
+        partenaireRepository.save(p);
+    }*/
+
+    @PutMapping(value = "/update/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void update(@PathVariable int id, @RequestBody() Partenaire p){
         Optional<Partenaire> partenaire;

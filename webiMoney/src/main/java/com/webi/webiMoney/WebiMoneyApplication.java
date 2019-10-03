@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class WebiMoneyApplication extends SpringBootServletInitializer implements CommandLineRunner {
@@ -17,6 +19,8 @@ public class WebiMoneyApplication extends SpringBootServletInitializer implement
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println(encoder.encode("passer"));
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(auth.getDetails());*/
 	}
 	//@Autowired
 	//PasswordEncoder encoder;
